@@ -1,6 +1,5 @@
 from fastapi import FastAPI
 from recipes import get_recipes
-import uvicorn
 
 app = FastAPI()
 
@@ -13,7 +12,3 @@ def hello():
 @app.get("/get_recipes")
 def get_recipes_endpoint(query: str):
     return get_recipes(query)
-
-
-if __name__ == "__main__":
-    uvicorn.run(app, port=8080)
