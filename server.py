@@ -10,5 +10,5 @@ def hello():
 
 
 @app.get("/get_recipes")
-def get_recipes_endpoint(query: str):
-    return get_recipes(query)
+def get_recipes_endpoint(q: str):
+    return get_recipes(q)

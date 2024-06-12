@@ -2,15 +2,19 @@ import requests
 from dotenv import load_dotenv
 import os
 
-URL = "https://api.edamam.com/search"
+URL = "https://api.edamam.com/api/recipes/v2"
 
 load_dotenv()
 
 PARAMS = {
+    "type": "public",
+    "q": None,
     "app_id": os.getenv("APP_ID"),
     "app_key": os.getenv("APP_KEY"),
     "from": 0,
     "to": 10,
+    "imageSize": "REGULAR",
+    "Accept-Encoding": "gzip",
 }
 
 
@@ -23,7 +27,7 @@ def get_recipes(query):
             {
                 "label": hit["recipe"]["label"],
                 "image": hit["recipe"]["image"],
-                "source": hit["recipe"]["source"],
+                "ingredients": hit["recipe"]["ingredientLines"],
                 "url": hit["recipe"]["url"],
             }
             for hit in data.get("hits", [])
