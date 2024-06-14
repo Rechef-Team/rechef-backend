@@ -1,7 +1,0 @@
-runtime: python312
-entrypoint: fastapi run app.main:app
-instance_class: F2
-
-env_variables:
-  APP_ID: $APP_ID
-  APP_KEY: $APP_KEY
