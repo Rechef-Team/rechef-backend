@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from recipes import get_recipes
+from app.recipes import get_recipes
 
 app = FastAPI()
 

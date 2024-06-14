@@ -1,10 +1,7 @@
 import requests
-from dotenv import load_dotenv
 import os
 
 URL = "https://api.edamam.com/api/recipes/v2"
-
-load_dotenv()
 
 PARAMS = {
     "type": "public",
@@ -34,3 +31,4 @@ def get_recipes(query):
         ]
     except requests.exceptions.RequestException as e:
         print("Error during request:", e)
+        return []
