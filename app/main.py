@@ -1,5 +1,6 @@
-from fastapi import FastAPI
-from app.recipes import get_recipes
+from fastapi import FastAPI, HTTPException, Query
+from typing import Optional
+from recipes import fetch_recipes
 
 app = FastAPI()
 
@@ -10,5 +11,9 @@ def hello():
 
 
 @app.get("/get_recipes")
-def get_recipes_endpoint(q: str):
-    return get_recipes(q)
+def get_recipes(q: str, _cont: Optional[str] = Query(None)):
+    try:
+        page, recipes, continuation_token = fetch_recipes(q, _cont)
+        return {"page": page, "recipes": recipes, "_cont": continuation_token}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail="Internal Server Error") from e
