@@ -25,8 +25,10 @@ def fetch_recipes(query: str, continuation_token: Optional[str] = None):
 
         recipes = [
             {
-                "label": hit["recipe"]["label"],
+                "name": hit["recipe"]["label"],
                 "image": hit["recipe"]["image"],
+                "preparation_time": hit["recipe"]["totalTime"],
+                "calories": hit["recipe"]["calories"],
                 "ingredients": hit["recipe"]["ingredientLines"],
                 "url": hit["recipe"]["url"],
             }
