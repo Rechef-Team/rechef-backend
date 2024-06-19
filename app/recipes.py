@@ -44,12 +44,5 @@ def fetch_recipes(query: str, continuation_token: Optional[str] = None):
 
         return page, recipes, continuation_token
 
-    except requests.HTTPError as e:
-        print(f"HTTP error occurred: {e.response.status_code} - {e.response.text}")
-        raise
-    except requests.RequestException as e:
-        print(f"Request error occurred: {e}")
-        raise
     except Exception as e:
-        print(f"An unexpected error occurred: {e}")
-        raise
+        raise e
